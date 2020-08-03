@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
                     "richResponse": {
                         "items": [{
                             "simpleResponse": {
-                                "textToSpeech": "this is a Google Assistant response " + `${cpuTemp}`
+                                "textToSpeech": "CPU Temperature " + cpuTemp + " degrees celsius"
                             }
                         }]
                     }
