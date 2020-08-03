@@ -19,5 +19,5 @@ app.get('/', function(req, res) {
 var httpsServer = https.createServer(credentials, app);
 
 httpsServer.listen(3000, function() {
-    console.log("googleApi listening at https://jagapathi.me:%s", port)
+    console.log("googleApi listening at https://jagapathi.me:3000")
 });
