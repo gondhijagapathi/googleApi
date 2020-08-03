@@ -9,7 +9,15 @@ var express = require('express');
 var app = express();
 
 app.post('/', function(req, res) {
-    res.send("hello");
+    res.json({
+        "fulfillmentMessages": [{
+            "text": {
+                "text": [
+                    "Text response from webhook"
+                ]
+            }
+        }]
+    });
 })
 app.get('/', function(req, res) {
         res.send("hello");
