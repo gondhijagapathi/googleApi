@@ -9,23 +9,27 @@ var express = require('express');
 var app = express();
 
 app.post('/', function(req, res) {
-    res.json({
-        "fulfillmentMessages": [{
-            "text": {
-                "text": [
-                    "Text response from webhook"
-                ]
-            }
-        }]
-    });
-})
-app.get('/', function(req, res) {
-        res.send("hello");
-    })
-    // your express configuration here
+            res.json({
+                "payload": {
+                    "google": {
+                        "expectUserResponse": true,
+                        "richResponse": {
+                            "items": [{
+                                "simpleResponse": {
+                                    "textToSpeech": "this is a Google Assistant response"
+                                }
+                            }]
+                        }
+                    }
+                }
+            })
+            app.get('/', function(req, res) {
+                    res.send("hello");
+                })
+                // your express configuration here
 
-var httpsServer = https.createServer(credentials, app);
+            var httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(3000, function() {
-    console.log("googleApi listening at https://jagapathi.me:3000")
-});
+            httpsServer.listen(3000, function() {
+                console.log("googleApi listening at https://jagapathi.me:3000")
+            });
