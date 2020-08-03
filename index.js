@@ -9,6 +9,20 @@ var express = require('express');
 var app = express();
 
 app.post('/', function(req, res) {
+    const { exec } = require("child_process");
+    let cpuTemp = 0;
+    exec("cat /sys/class/thermal/thermal_zone*/temp", (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        cpuTemp = `${stdout}` / 1000;
+    });
     res.json({
         "payload": {
             "google": {
@@ -16,7 +30,7 @@ app.post('/', function(req, res) {
                 "richResponse": {
                     "items": [{
                         "simpleResponse": {
-                            "textToSpeech": "this is a Google Assistant response"
+                            "textToSpeech": "this is a Google Assistant response " + `${stdout}`
                         }
                     }]
                 }
