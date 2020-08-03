@@ -9,10 +9,15 @@ var express = require('express');
 var app = express();
 
 app.post('/', function(req, res) {
+    res.send("hello");
+})
+app.get('/', function(req, res) {
         res.send("hello");
     })
     // your express configuration here
 
 var httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(3000);
+httpsServer.listen(3000, function() {
+    console.log("googleApi listening at https://jagapathi.me:%s", port)
+});
