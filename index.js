@@ -30,7 +30,7 @@ app.post('/', function(req, res) {
                 "richResponse": {
                     "items": [{
                         "simpleResponse": {
-                            "textToSpeech": "this is a Google Assistant response " + `${stdout}`
+                            "textToSpeech": "this is a Google Assistant response " + `${cpuTemp}`
                         }
                     }]
                 }
