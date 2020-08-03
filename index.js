@@ -1,12 +1,18 @@
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey = fs.readFileSync('/etc/letsencrypt/live/jagapathi.me/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/jagapathi.me/fullchain.pem', 'utf8');
+
+var credentials = { key: privateKey, cert: certificate };
 var express = require('express');
 var app = express();
 
 app.post('/', function(req, res) {
-    res.send("hello");
-})
+        res.send("hello");
+    })
+    // your express configuration here
 
-var server = app.listen(3000, function() {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("Example app listening at http://%s:%s", host, port)
-})
+var httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(3000);
