@@ -21,22 +21,22 @@ app.post('/', function(req, res) {
             return;
         }
         console.log(`stdout: ${stdout}`);
-        cpuTemp = `${stdout}` / 1000;
-    });
-    res.json({
-        "payload": {
-            "google": {
-                "expectUserResponse": true,
-                "richResponse": {
-                    "items": [{
-                        "simpleResponse": {
-                            "textToSpeech": "this is a Google Assistant response " + `${cpuTemp}`
-                        }
-                    }]
+        cpuTemp = Number(stdout) / 1000;
+        res.json({
+            "payload": {
+                "google": {
+                    "expectUserResponse": true,
+                    "richResponse": {
+                        "items": [{
+                            "simpleResponse": {
+                                "textToSpeech": "this is a Google Assistant response " + `${cpuTemp}`
+                            }
+                        }]
+                    }
                 }
             }
-        }
-    })
+        })
+    });
 })
 app.get('/', function(req, res) {
         res.send("hello");
